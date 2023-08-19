@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    <div>
+        <form method="POST" action="/url">
+            <label>Enter Your Original Link</label>
+            <input type="text" name="url" placeholder="https://example.com" />
+            <button type="submit">Generate</button>
+        </form>
+        <% if (locals.id) { %>
+        <a href="http://localhost:3000/view/<%= id %>">
+            <h3>The generated link is <%= id %></h3>
+        </a>
+        <% } %>
+    </div>
+    <% if (locals.urls) { %>
+    <h1>URL List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ShortID</th>
+                <th>Redirect</th>
+                <th>Clicks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const url of urls) { %>
+            <tr>
+                <td><%= url.shortId %></td>
+                <td><%= url.redirectURL %></td>
+                <td><%= url.visitHistory.length %></td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <% } %>
+</body>
+</html>
