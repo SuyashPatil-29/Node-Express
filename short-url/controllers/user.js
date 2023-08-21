@@ -20,10 +20,8 @@ async function handleUserLogin(req,res){
         const user = await User.findOne({ email, password });
         
         if (user) {
-            // User found, handle successful login
-            const sessionId = uuidv4()
-            setUser(sessionId, user)
-            res.cookie("uid", sessionId)
+            const token = setUser(user)
+            res.cookie("uid", token)
             res.redirect("/")
         } else {
             // User not found, handle login failure
