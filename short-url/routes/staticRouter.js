@@ -1,8 +1,9 @@
 const express = require("express")
 const router = express.Router()
 const {handleStaticRoutes} = require("../controllers/staticRouter")
+const { restrictTo } = require("../middlewares/auth")
 
-router.get("/" , handleStaticRoutes)
+router.get("/" ,restrictTo(["NORMAL"]), handleStaticRoutes)
 
 router.get("/signup" , (req,res)=>{
     return res.render("signup")
