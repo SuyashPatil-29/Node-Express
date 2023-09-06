@@ -1,0 +1,39 @@
+<%- include("./partials/head.ejs") %>
+<title>Signin</title>
+</head>
+<body>
+    <%- include("./partials/navbar.ejs") %>
+    <div class="container mt-4"></div>
+    <form action="/user/signin" method="POST">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <div class="input-group">
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+            <button type="button" id="showPasswordBtn" class="btn btn-secondary">Show Password</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    <%- include("./partials/script.ejs") %>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const passwordInput = document.getElementById("exampleInputPassword1");
+        const showPasswordBtn = document.getElementById("showPasswordBtn");
+
+        showPasswordBtn.addEventListener("click", function() {
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            showPasswordBtn.textContent = "Hide Password";
+          } else {
+            passwordInput.type = "password";
+            showPasswordBtn.textContent = "Show Password";
+          }
+        });
+      });
+    </script>
+</body>
+</html>
